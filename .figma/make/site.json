@@ -1,0 +1,10 @@
+{
+  "description": "Un blog dédié aux utilisateurs de Feeti, avec des présentations de la plateforme et des espaces pour partager bonnes pratiques, articles et tutoriels vidéo.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
