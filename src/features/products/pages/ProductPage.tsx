@@ -3,10 +3,25 @@ import { AppLink } from "../../../components/ui/AppLink";
 import { CtaSection } from "../../../components/ui/CtaSection";
 import { DashboardVisual } from "../../../components/ui/DashboardVisual";
 import { platformLinks } from "../../../platformLinks";
-import { products } from "../products.data";
+import { useProducts, useProduct } from "../products.queries";
 import type { Product } from "../products.types";
+import {
+  ContentEmpty,
+  ContentError,
+  ContentLoading,
+} from "../../../components/feedback/ContentStates";
 
-export function ProductPage({ product }: { product: Product }) {
+export function ProductRoutePage({ slug }: { slug: string }) {
+  const productQuery = useProduct(slug);
+  const productsQuery = useProducts();
+  if (productQuery.isPending || productsQuery.isPending)
+    return <ContentLoading label="Chargement du produit…" />;
+  if (productQuery.isError || productsQuery.isError) return <ContentError />;
+  if (!productQuery.data) return <ContentEmpty label="Ce produit est introuvable." />;
+  return <ProductPage product={productQuery.data} products={productsQuery.data.items} />;
+}
+
+export function ProductPage({ product, products }: { product: Product; products: Product[] }) {
   const productUrl = product.slug === "play" ? platformLinks.play : platformLinks.ticket;
   const others = products.filter((item) => item.slug !== product.slug).slice(0, 3);
   return (

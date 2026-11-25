@@ -1,7 +1,20 @@
 import { AppLink } from "../../../components/ui/AppLink";
-import { articles } from "../content.data";
+import {
+  ContentEmpty,
+  ContentError,
+  ContentLoading,
+} from "../../../components/feedback/ContentStates";
+import { useArticles } from "../content.queries";
 
 export function BlogPage() {
+  const articlesQuery = useArticles();
+  if (articlesQuery.isPending) return <ContentLoading label="Chargement des articles…" />;
+  if (articlesQuery.isError) return <ContentError />;
+  const articles = articlesQuery.data.items;
+  if (articles.length === 0) return <ContentEmpty label="Aucun article n’est encore publié." />;
+  const [featuredArticle, ...otherArticles] = articles;
+  if (!featuredArticle) return <ContentEmpty label="Aucun article n’est encore publié." />;
+
   return (
     <>
       <main>
@@ -20,16 +33,16 @@ export function BlogPage() {
         </section>
         <section className="blog-featured">
           <div>
-            <img src={articles[0].image} alt="Public d’un grand événement en plein air" />
+            <img src={featuredArticle.image} alt={featuredArticle.title} />
             <span>À la une</span>
           </div>
           <article>
             <small>
-              {articles[0].category} · {articles[0].read} de lecture
+              {featuredArticle.category} · {featuredArticle.read} de lecture
             </small>
-            <h2>{articles[0].title}</h2>
-            <p>{articles[0].excerpt}</p>
-            <AppLink className="article-link" href={`/blog/${articles[0].slug}`}>
+            <h2>{featuredArticle.title}</h2>
+            <p>{featuredArticle.excerpt}</p>
+            <AppLink className="article-link" href={`/blog/${featuredArticle.slug}`}>
               Lire l’article <span>↗</span>
             </AppLink>
           </article>
@@ -43,7 +56,7 @@ export function BlogPage() {
             <span>{articles.length} articles</span>
           </div>
           <div className="article-grid">
-            {articles.slice(1).map((article) => (
+            {otherArticles.map((article) => (
               <article key={article.title}>
                 <div>
                   <img src={article.image} alt="" />

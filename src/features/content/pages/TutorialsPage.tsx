@@ -1,10 +1,23 @@
 import { useState } from "react";
 import { CtaSection } from "../../../components/ui/CtaSection";
-import { tutorials } from "../content.data";
+import {
+  ContentEmpty,
+  ContentError,
+  ContentLoading,
+} from "../../../components/feedback/ContentStates";
+import { useTutorials } from "../content.queries";
 
 export function TutorialsPage() {
+  const tutorialsQuery = useTutorials();
   const [selected, setSelected] = useState(0);
-  const tutorial = tutorials[selected];
+  if (tutorialsQuery.isPending) return <ContentLoading label="Chargement des tutoriels…" />;
+  if (tutorialsQuery.isError) return <ContentError />;
+  const tutorials = tutorialsQuery.data.items;
+  if (tutorials.length === 0)
+    return <ContentEmpty label="Aucun tutoriel n’est encore disponible." />;
+  const currentIndex = Math.min(selected, tutorials.length - 1);
+  const tutorial = tutorials[currentIndex];
+  if (!tutorial) return <ContentEmpty label="Aucun tutoriel n’est encore disponible." />;
   return (
     <>
       <main>
@@ -27,7 +40,7 @@ export function TutorialsPage() {
           </div>
           <div className="video-copy">
             <span>
-              {tutorial.level} · Tutoriel {String(selected + 1).padStart(2, "0")}
+              {tutorial.level} · Tutoriel {String(currentIndex + 1).padStart(2, "0")}
             </span>
             <h2>{tutorial.title}</h2>
             <p>{tutorial.description}</p>
@@ -56,7 +69,7 @@ export function TutorialsPage() {
                   setSelected(index);
                   window.scrollTo({ top: 520, behavior: "smooth" });
                 }}
-                className={selected === index ? "selected" : ""}
+                className={currentIndex === index ? "selected" : ""}
               >
                 <div className="tutorial-thumb">
                   <img src={item.image} alt="" />

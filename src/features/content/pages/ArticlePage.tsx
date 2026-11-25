@@ -1,6 +1,21 @@
 import { AppLink } from "../../../components/ui/AppLink";
 import { platformLinks } from "../../../platformLinks";
-import type { Article } from "../content.data";
+import type { Article } from "../content.types";
+import {
+  ContentEmpty,
+  ContentError,
+  ContentLoading,
+} from "../../../components/feedback/ContentStates";
+import { useArticle } from "../content.queries";
+
+export function ArticleRoutePage({ slug }: { slug: string }) {
+  const articleQuery = useArticle(slug);
+  if (articleQuery.isPending) return <ContentLoading label="Chargement de l’article…" />;
+  if (articleQuery.isError)
+    return <ContentError message="Cet article est introuvable ou indisponible." />;
+  if (!articleQuery.data) return <ContentEmpty label="Cet article est introuvable." />;
+  return <ArticlePage article={articleQuery.data} />;
+}
 
 export function ArticlePage({ article }: { article: Article }) {
   return (

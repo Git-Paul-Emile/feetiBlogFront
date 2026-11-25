@@ -1,4 +1,16 @@
-import type { InfoPageContent } from "../content.data";
+import type { InfoPageContent } from "../content.types";
+import { ContentError, ContentLoading } from "../../../components/feedback/ContentStates";
+import { useInfoPage } from "../content.queries";
+
+export function InfoRoutePage({ slug }: { slug: string }) {
+  const pageQuery = useInfoPage(slug);
+  if (pageQuery.isPending) return <ContentLoading label="Chargement de la page…" />;
+  if (pageQuery.isError)
+    return <ContentError message="Cette page est introuvable ou indisponible." />;
+  if (!pageQuery.data)
+    return <ContentError message="Cette page est introuvable ou indisponible." />;
+  return <InfoPage page={pageQuery.data} />;
+}
 
 export function InfoPage({ page }: { page: InfoPageContent }) {
   return (
@@ -17,10 +29,6 @@ export function InfoPage({ page }: { page: InfoPageContent }) {
                 {section}
                 <i>+</i>
               </summary>
-              <p>
-                Cette section sera complétée avec les informations officielles de Feeti. Pour toute
-                question immédiate, contactez notre équipe à hello@feeti.co.
-              </p>
             </details>
           ))}
         </div>

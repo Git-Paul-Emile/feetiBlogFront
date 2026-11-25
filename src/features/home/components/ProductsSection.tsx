@@ -1,9 +1,21 @@
 import type { CSSProperties } from "react";
 import { AppLink } from "../../../components/ui/AppLink";
 import { DashboardVisual } from "../../../components/ui/DashboardVisual";
-import { products } from "../../products/products.data";
+import { useProducts } from "../../products/products.queries";
+import {
+  ContentEmpty,
+  ContentError,
+  ContentLoading,
+} from "../../../components/feedback/ContentStates";
 
 export function ProductsSection() {
+  const productsQuery = useProducts();
+  if (productsQuery.isPending) return <ContentLoading label="Chargement des produits…" />;
+  if (productsQuery.isError) return <ContentError />;
+  const products = productsQuery.data.items;
+  if (products.length === 0)
+    return <ContentEmpty label="Aucun produit n’est disponible actuellement." />;
+
   return (
     <section className="products-section" id="produits">
       <div className="section-heading">

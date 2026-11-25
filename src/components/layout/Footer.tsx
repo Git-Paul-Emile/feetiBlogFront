@@ -1,10 +1,12 @@
-import { products } from "../../features/products/products.data";
+import { useProducts } from "../../features/products/products.queries";
 import { platformLinks } from "../../platformLinks";
 import { AppLink } from "../ui/AppLink";
 import { Logo } from "../ui/Logo";
 import { Newsletter } from "./Newsletter";
 
 export function Footer() {
+  const productsQuery = useProducts();
+  const products = productsQuery.data?.items ?? [];
   return (
     <>
       <Newsletter />
