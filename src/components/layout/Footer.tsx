@@ -1,4 +1,5 @@
 import { products } from "../../features/products/products.data";
+import { platformLinks } from "../../platformLinks";
 import { AppLink } from "../ui/AppLink";
 import { Logo } from "../ui/Logo";
 import { Newsletter } from "./Newsletter";
@@ -17,10 +18,10 @@ export function Footer() {
               vos événements.
             </p>
             <div className="footer-sites">
-              <a href="https://play.feeti.co" target="_blank" rel="noreferrer">
+              <a href={platformLinks.play} target="_blank" rel="noreferrer">
                 Feeti Play <span>↗</span>
               </a>
-              <a href="https://tickets.feeti.co" target="_blank" rel="noreferrer">
+              <a href={platformLinks.ticket} target="_blank" rel="noreferrer">
                 Feeti Ticket <span>↗</span>
               </a>
             </div>

@@ -24,6 +24,9 @@ export function Header() {
         <a href={platformLinks.ticket} onClick={() => setOpen(false)}>
           Feeti Ticket
         </a>
+        <a href={platformLinks.play} onClick={() => setOpen(false)}>
+          Feeti Play
+        </a>
       </nav>
       <a className="button button-dark header-cta" href="mailto:hello@feeti.co">
         Parler à l’équipe <span>↗</span>
