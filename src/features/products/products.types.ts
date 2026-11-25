@@ -1,0 +1,20 @@
+export type Product = {
+  slug: string;
+  index: string;
+  name: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  accent: string;
+  soft: string;
+  image: string;
+  imageAlt: string;
+  stat: string;
+  outcome: string;
+  features: { title: string; description: string }[];
+  steps: { title: string; description: string }[];
+  quote: string;
+  quoteAttribution: string;
+  cta: string;
+  contact: string;
+};
