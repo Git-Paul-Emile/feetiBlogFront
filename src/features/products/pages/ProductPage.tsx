@@ -2,10 +2,12 @@ import type { CSSProperties } from "react";
 import { AppLink } from "../../../components/ui/AppLink";
 import { CtaSection } from "../../../components/ui/CtaSection";
 import { DashboardVisual } from "../../../components/ui/DashboardVisual";
+import { platformLinks } from "../../../platformLinks";
 import { products } from "../products.data";
 import type { Product } from "../products.types";
 
 export function ProductPage({ product }: { product: Product }) {
+  const productUrl = product.slug === "play" ? platformLinks.play : platformLinks.ticket;
   const others = products.filter((item) => item.slug !== product.slug).slice(0, 3);
   return (
     <>
@@ -25,7 +27,7 @@ export function ProductPage({ product }: { product: Product }) {
               <h1>{product.title}</h1>
               <p>{product.description}</p>
               <div>
-                <a className="button button-dark" href="mailto:hello@feeti.co">
+                <a className="button button-dark" href={productUrl}>
                   Essayer {product.name} <span>↗</span>
                 </a>
                 <a className="text-link" href="#fonctionnalites">
@@ -148,8 +150,8 @@ export function ProductPage({ product }: { product: Product }) {
         >
           <span className="eyebrow">{product.name}</span>
           <h2>{product.cta}</h2>
-          <a className="button button-dark" href={`mailto:${product.contact}`}>
-            Écrire à {product.contact} <span>↗</span>
+          <a className="button button-dark" href={productUrl}>
+            Accéder à {product.name} <span>↗</span>
           </a>
         </section>
         <CtaSection />

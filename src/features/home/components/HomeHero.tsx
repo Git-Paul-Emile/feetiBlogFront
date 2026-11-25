@@ -1,3 +1,5 @@
+import { platformLinks } from "../../../platformLinks";
+
 export function HomeHero() {
   return (
     <section className="home-hero">
@@ -13,7 +15,7 @@ export function HomeHero() {
           transformer une idée en expérience inoubliable.
         </p>
         <div className="hero-actions">
-          <a className="button button-green" href="mailto:hello@feeti.co">
+          <a className="button button-green" href={platformLinks.ticket}>
             Créer un événement <span>↗</span>
           </a>
           <a href="#produits" className="text-link">

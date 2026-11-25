@@ -52,7 +52,6 @@ export const products: Product[] = [
       "Nous avons arrêté d’imprimer des carnets coûteux et suivons désormais le remplissage en direct depuis notre téléphone.",
     quoteAttribution: "Organisateur partenaire · Féeti Tickets",
     cta: "Passez au guichet fermé dès votre prochain événement",
-    contact: "promoteurs@feeti.io",
   },
   {
     slug: "play",
@@ -106,7 +105,6 @@ export const products: Product[] = [
       "Nos fans à Paris, Montréal et Douala ont suivi le concert en direct HD comme s’ils étaient au premier rang.",
     quoteAttribution: "Producteur de spectacle · Féeti Play",
     cta: "Transformez votre prochain événement en show mondial",
-    contact: "play@feeti.io",
   },
   {
     slug: "acces",
@@ -161,7 +159,6 @@ export const products: Product[] = [
       "Nous avons fait entrer plus de 2 000 personnes en une heure sans le moindre ralentissement.",
     quoteAttribution: "Responsable des accès · Féeti Accès",
     cta: "Blindez le contrôle d’accès de votre prochain événement",
-    contact: "access@feeti.io",
   },
   {
     slug: "na-feeti",
@@ -214,6 +211,5 @@ export const products: Product[] = [
       "Avec le Pack OR, nous avons vendu les 300 dernières places de notre spectacle en seulement quatre jours.",
     quoteAttribution: "Promoteur de spectacle · FEETI NA FEETI",
     cta: "Boostez votre événement dès aujourd’hui",
-    contact: "marketing@feeti.io",
   },
 ];

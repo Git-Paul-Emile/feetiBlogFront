@@ -1,3 +1,5 @@
+import { platformLinks } from "../../platformLinks";
+
 export function CtaSection() {
   return (
     <section className="cta-section">
@@ -9,7 +11,7 @@ export function CtaSection() {
       </h2>
       <p>Créez votre événement avec Feeti ou échangez avec notre équipe.</p>
       <div>
-        <a className="button button-green" href="mailto:hello@feeti.co">
+        <a className="button button-green" href={platformLinks.ticket}>
           Commencer maintenant <span>↗</span>
         </a>
         <a className="button button-outline" href="mailto:hello@feeti.co">

@@ -16,5 +16,4 @@ export type Product = {
   quote: string;
   quoteAttribution: string;
   cta: string;
-  contact: string;
 };

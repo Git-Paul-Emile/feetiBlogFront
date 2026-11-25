@@ -1,4 +1,5 @@
 import { AppLink } from "../../../components/ui/AppLink";
+import { platformLinks } from "../../../platformLinks";
 import type { Article } from "../content.data";
 
 export function ArticlePage({ article }: { article: Article }) {
@@ -48,7 +49,7 @@ export function ArticlePage({ article }: { article: Article }) {
               Transformez ces conseils en plan d’action, partagez-le avec votre équipe et mesurez
               les résultats depuis Feeti.
             </p>
-            <a className="button button-dark" href="mailto:hello@feeti.co">
+            <a className="button button-dark" href={platformLinks.ticket}>
               Créer avec Feeti <span>↗</span>
             </a>
           </div>
