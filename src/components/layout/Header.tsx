@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { platformLinks } from "../../platformLinks";
 import { AppLink } from "../ui/AppLink";
 import { Logo } from "../ui/Logo";
 
@@ -20,6 +21,9 @@ export function Header() {
         <AppLink href="/blog" onClick={() => setOpen(false)}>
           Blog
         </AppLink>
+        <a href={platformLinks.ticket} onClick={() => setOpen(false)}>
+          Feeti Ticket
+        </a>
       </nav>
       <a className="button button-dark header-cta" href="mailto:hello@feeti.co">
         Parler à l’équipe <span>↗</span>
